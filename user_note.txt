@@ -1,0 +1,33 @@
+Link tham khao 
+https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-54/out/en/host/attribute-protocol--att-.html#UUID-a1f22a10-ac5b-9887-badf-54c142565593
+
+
+MO TA
+
+Folder ble_master (DEVICE A) lam vai master, se ket noi va la nguoi chu dong gui mtu REQ 
+
+Folder ble_slave (DEVICE B) lam vai slave, se la nguoi nhan REQ va phan hoi MTU RSP
+
+NOTE: search "bdang" de xem nhung noi thay doi code 
+
+
+
+
+#DEVICE A 
+
+Init -> Register callback handle Event -> Find device with target MAC -> Etabslish connection -> Send MTU REQ -> Set MTU -> Discovery
+
+
+
+
+
+
+#DEVICE B 
+
+Init -> Set RxMTU server size -> wait for MTU Exchange REQ -> Send RSP
+
+NOTE: doi voi slave sau khi nhan MTU REQ, SDK se tu dong gui RSP cho nen se khong thay api send RSP
+      chi can set Mtu Rx Size cho server la duoc
+
+blc_att_setRxMtuSize(BDANG_EXCHANGE_MTU);  line 635, file app.c, func user_normal_init
+
